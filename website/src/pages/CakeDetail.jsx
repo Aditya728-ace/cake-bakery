@@ -11,7 +11,9 @@ export default function CakeDetail() {
   const { bakery } = useSite();
   const { data: cake, loading, error } = useFetch(() => api.cake(slug), [slug]);
   const [active, setActive] = useState(0);
-  useEffect(() => setActive(0), [slug]);
+  useEffect(() => {
+    setActive(0);
+  }, [slug]);
   useEffect(() => {
     if (cake && bakery) document.title = `${cake.title} · ${bakery.name}`;
   }, [cake, bakery]);
