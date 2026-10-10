@@ -6,6 +6,7 @@ import Home from "./pages/Home.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import CakeDetail from "./pages/CakeDetail.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
 import { useSite } from "./site.jsx";
 
 function ScrollTop() {
@@ -16,8 +17,9 @@ function ScrollTop() {
 
 export default function App() {
   const { error, loading } = useSite();
+  const { pathname } = useLocation();
   return (
-    <>
+    <ErrorBoundary key={pathname}>
       <ScrollTop />
       <Header />
       <main>
@@ -37,6 +39,6 @@ export default function App() {
         )}
       </main>
       <Footer />
-    </>
+    </ErrorBoundary>
   );
 }
